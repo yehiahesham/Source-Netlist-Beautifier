@@ -2,6 +2,7 @@
 //created to test if the parser accepts an unspecified
 //number if inputs, which it does,
 //MODULE3X1 has 3 inputs and MODULE6X1 has 6 inputs
+//This was used for testing in addition to the files already provided to us on BB
 module testinput(mr, md, x, z);
   wire _0_;
   wire _1_;
