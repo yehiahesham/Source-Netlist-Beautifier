@@ -45,16 +45,16 @@ void Graph::addEdge(string v, string t, string w)
 		{
 			if (adj[j].node == v)
 			{
-				s2 = 1; 
+				s2 = 1;
 				if (adj[j].type == "!" || adj[j].type == "") //since sometimes inside the main function we pass portions of the nodes via another one. so we solve that by implementing this
 					adj[j].type = t;
 				if (w != "") // if it is a wire, input  or output
 				{
-					adj[j].edges.push_back(w); 
-					
+					adj[j].edges.push_back(w);
+
 					for (int x = 0; x < adj.size(); x++)
 					{
-						if (adj[x].node == w) 
+						if (adj[x].node == w)
 						{
 							s = 1;
 							break;
@@ -151,7 +151,7 @@ void Graph::topologicalSort()
 
 	//JSON file generation (manual, without using libraries)
 	//___________PLZ TAKE CARE OF THE LOCATION_____________//
-	ofstream jsonout("C:\\Users\\yehia\\Desktop\\booth.json");                   //destination file to export JSON data to
+	ofstream jsonout("----------------------------------------------------------");                   //destination file to export JSON data to
 	vector<string> temp;
 	jsonout << "{" << endl;
 
@@ -249,7 +249,7 @@ void main()
 	vector<int>wires;
 	ifstream myfile;
 	//___________PLZ TAKE CARE OF THE LOCATION_____________//
-	myfile.open("C:\\Users\\Ahmad Adel\\Desktop\\3input.g.v");              //source file to retrieve netlist from
+	myfile.open("----------------------------------------------------------");              //source file to retrieve netlist from
 	string line;
 	string line2 = "NOR2X4 U111(.A(n118), .B(n172), .Y(n116));";
 	smatch m;
@@ -261,16 +261,16 @@ void main()
 	regex mline11("\\s*\\.([[:w:]]+)\\(([[:w:]]+)\\s*\\)\\s*,\\s*"); //correct ,input without  [] and with comma
 	regex mline42("\\s*\\.([[:w:]]+)\\(([[:w:]]+\\[[[:d:]]+\\])\\s*\\)\\s*"); //output with []
 	regex mline442("\\s*\\.([[:w:]]+)\\(([[:w:]]+)\\s*\\)\\s*"); //output without  []
-	regex wire2("\\s*wire\\s+([[:w:]]+)\\s*\\;"); //WIRE without []
-	regex wire("\\s*wire\\s+\\[\\s*([[:d:]]+)\\s*\\:\\s*([[:d:]]+)\\s*\\]\\s*([[:w:]]+)\\s*\\;"); //WIRE with []
-	regex input("\\s*input\\s+\\[\\s*([[:d:]]+)\\s*\\:\\s*([[:d:]]+)\\s*\\]\\s*([[:w:]]+)\\s*\\;"); //input with []
-	regex input2("\\s*input\\s+([[:w:]]+)\\s*\\;"); //input without []
-	regex output("\\s*output\\s+\\[\\s*([[:d:]]+)\\s*\\:\\s*([[:d:]]+)\\s*\\]\\s*([[:w:]]+)\\s*\\;"); //output with []
-	regex output2("\\s*output\\s+([[:w:]]+)\\s*\\;"); //output without []
-	regex assign("\\s*assign\\s+([[:w:]]+)\\s*\\[\\s*([[:d:]]+)\\s*\\]\\s*\\=\\s*([[:w:]]+)\\s*\\[\\s*([[:d:]]+)\\s*\\]\\s*\\;"); // assign x[d]=y[d]
-	regex assign2("\\s*assign\\s+([[:w:]]+)\\s*\\[\\s*([[:d:]]+)\\s*\\:\\s*([[:d:]]+)\\s*\\]\\s*\\=\\s*([[:w:]]+)\\s*\\[\\s*([[:d:]]+)\\s*\\]\\s*\\;"); // assign x[d:d]=y[d:d]
-	regex assign3("\\s*assign\\s+([[:w:]]+)\\s*\\=\\s*([[:w:]]+)\\s*\\;"); //assign x=y
-	regex endofnetlist("\\s*\\)\\;"); // to check the end of module
+	regex wire2("\\s*wire\\s+([[:w:]]+)\\s*\\;\\s*"); //WIRE without []
+	regex wire("\\s*wire\\s+\\[\\s*([[:d:]]+)\\s*\\:\\s*([[:d:]]+)\\s*\\]\\s*([[:w:]]+)\\s*\\;\\s*"); //WIRE with []
+	regex input("\\s*input\\s+\\[\\s*([[:d:]]+)\\s*\\:\\s*([[:d:]]+)\\s*\\]\\s*([[:w:]]+)\\s*\\;\\s*"); //input with []
+	regex input2("\\s*input\\s+([[:w:]]+)\\s*\\;\\s*"); //input without []
+	regex output("\\s*output\\s+\\[\\s*([[:d:]]+)\\s*\\:\\s*([[:d:]]+)\\s*\\]\\s*([[:w:]]+)\\s*\\;\\s*"); //output with []
+	regex output2("\\s*output\\s+([[:w:]]+)\\s*\\;\\s*"); //output without []
+	regex assign("\\s*assign\\s+([[:w:]]+)\\s*\\[\\s*([[:d:]]+)\\s*\\]\\s*\\=\\s*([[:w:]]+)\\s*\\[\\s*([[:d:]]+)\\s*\\]\\s*\\;\\s*"); // assign x[d]=y[d]
+	regex assign2("\\s*assign\\s+([[:w:]]+)\\s*\\[\\s*([[:d:]]+)\\s*\\:\\s*([[:d:]]+)\\s*\\]\\s*\\=\\s*([[:w:]]+)\\s*\\[\\s*([[:d:]]+)\\s*\\]\\s*\\;\\s*"); // assign x[d:d]=y[d:d]
+	regex assign3("\\s*assign\\s+([[:w:]]+)\\s*\\=\\s*([[:w:]]+)\\s*\\;\\s*"); //assign x=y
+	regex endofnetlist("\\s*\\)\\;\\s*"); // to check the end of module
 
 	vector<module> nodes;
 
